@@ -149,6 +149,7 @@ public class Customer {
 
     @Column(name = "created_at", nullable = true)
     private LocalDate createdAt;
+    
     @Column(name = "updated_at")
     private LocalDate updatedAt;
 
