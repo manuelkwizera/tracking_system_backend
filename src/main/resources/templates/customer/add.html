@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="fragments/fragements :: head"></head>
+<body>
+<div class="main-wrapper">
+	<div th:replace="fragments/fragements :: header"></div>
+	<div th:replace="fragments/fragements :: sidebar"></div>
+	<!-- Page Wrapper -->
+	<div class="page-wrapper">
+		<div class="content container-fluid">
+			<!-- Page Header -->
+			<div class="page-header">
+				<div class="row">
+					<div class="col-auto">
+						<h3 class="page-title" th:text="${page_title}"></h3>
+					</div>
+					<div class="col-auto ml-auto">
+						<ul class="breadcrumb">
+							<li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+							<li class="breadcrumb-item active" th:text="${page_title}"></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<!-- /Page Header -->
+			<div class="row">
+				<div class="col-md-12">
+					<div class="card">
+						<div class="card-body">
+							<form action="#" th:action="@{/save-customer}" th:object="${customer}" method="post">
+								<div class="row mt-0">
+									<div class="col-6">
+										<label for="first-name">First Name</label>
+										<input th:field="*{firstName}" type="text" class="form-control" id="first-name">
+									</div>
+									<div class="col-6">
+										<label for="last-name">Last Name</label>
+										<input th:field="*{lastName}" type="text" class="form-control" id="last-name">
+									</div>
+								</div>
+								<div class="row mt-4">
+									<div class="col-6">
+										<label for="phone">Phone</label>
+										<input th:field="*{phone}" type="number" class="form-control" id="phone">
+									</div>
+									<div class="col-6">
+										<label for="email">Email</label>
+										<input th:field="*{email}" type="text" class="form-control" id="email">
+									</div>
+								</div>
+								<div class="row mt-4">
+									<div class="col-6">
+										<label for="city">City</label>
+										<input th:field="*{city}" type="text" class="form-control" id="city">
+									</div>
+									<div class="col-6">
+										<label for="state">State</label>
+										<input th:field="*{state}" type="text" class="form-control" id="state">
+									</div>
+								</div>
+								<div class="row mt-4">
+									<div class="col-6">
+										<label for="address-line-one">Address Line 1</label>
+										<input th:field="*{addressLineOne}" type="text" class="form-control" id="address-line-one">
+									</div>
+									<div class="col-6">
+										<label for="address-line-two">Address Line 2</label>
+										<input th:field="*{addressLineTwo}" type="text" class="form-control" id="address-line-two">
+									</div>
+								</div>
+								<div class="row mt-4">
+									<div class="col-6">
+										<label for="gender">Gender</label>
+										<select th:field="*{gender}" class="form-control" id="gender">
+											<option value="">-- Select Gender --</option>
+											<option value="0" th:selected="${gender == 0}">Male</option>
+											<option value="1" th:selected="${gender == 1}">Female</option>
+										</select>
+									</div>
+									<div class="col-6">
+										<div class="form-group">
+											<label class="d-block">Status:</label>
+											<div class="form-check form-check-inline">
+												<input th:field="*{status}" class="form-check-input" type="radio" name="status" id="active" value="1">
+												<label class="form-check-label" for="active">Active</label>
+											</div>
+											<div class="form-check form-check-inline">
+												<input th:field="*{status}" class="form-check-input" type="radio" name="status" id="inactive" value="0">
+												<label class="form-check-label" for="inactive">Inactive</label>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row mt-4">
+									<div class="col-6">
+										<div class="text-left">
+											<button type="submit" class="btn btn-primary">Submit</button>
+											<a th:href="@{customers}" type="button" class="btn btn-secondary">Back</a>
+										</div>
+									</div>
+								</div>
+							</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- /Page Wrapper -->
+</div>
+<th:block th:replace="fragments/fragements :: scripts"></th:block>
+</body>
+</html>
