@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="fragments/fragements :: head"></head>
+<body>
+<div class="main-wrapper">
+    <div th:replace="fragments/fragements :: header"></div>
+    <div th:replace="fragments/fragements :: sidebar"></div>
+    <!-- Page Wrapper -->
+    <div class="page-wrapper">
+        <div class="content container-fluid">
+            <!-- Page Header -->
+            <div class="page-header">
+                <div class="row">
+                    <div class="col-auto">
+                        <h3 class="page-title" th:text="${page_title}"></h3>
+                    </div>
+                    <div class="col-auto ml-auto">
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="index.html">Branch</a></li>
+                            <li class="breadcrumb-item active" th:text="${page_title}"></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- /Page Header -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <form action="#" th:action="@{/save-branch}" th:object="${branch}" method="post" enctype="multipart/form-data">
+                                <div class="row mt-0">
+                                    <div class="col-6">
+                                        <label for="branch_name">Branch Name</label>
+                                        <input th:field="*{name}" type="text" class="form-control" id="branch_name">
+                                        <div th:if="${#fields.hasErrors('name')}">
+                                            <div th:each="error : ${#fields.errors('name')}" th:text="${error}"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <label for="branch_email">Email</label>
+                                        <input th:field="*{email}" type="email" class="form-control" id="branch_email">
+                                        <!--<div th:if="${#fields.hasGlobalErrors()}" class="error-message">
+                                            <p th:each="error : ${errors}" th:text="${error.defaultMessage}"></p>
+                                        </div>-->
+                                    </div>
+                                </div>
+                                <div class="row mt-4">
+                                    <div class="col-6">
+                                        <label for="phone">Phone</label>
+                                        <input th:field="*{phone}" type="number" class="form-control" id="phone">
+                                    </div>
+                                    <div class="col-6">
+                                        <label for="branch_image">Image</label>
+                                        <input th:field="*{image}" type="file" class="form-control" id="branch_image">
+                                    </div>
+                                </div>
+                                <div class="row mt-4">
+                                    <div class="col-6">
+                                        <label for="branch_address">Address</label>
+                                        <input th:field="*{address}" type="text" class="form-control" id="branch_address">
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label class="d-block">Status:</label>
+                                            <div class="form-check form-check-inline">
+                                                <input th:field="*{status}" class="form-check-input" type="radio" name="status" id="active" value="active">
+                                                <label class="form-check-label" for="active">Active</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input th:field="*{status}" class="form-check-input" type="radio" name="status" id="inactive" value="inactive">
+                                                <label class="form-check-label" for="inactive">Inactive</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-4">
+                                    <div class="col-6">
+                                        <div class="text-left">
+                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                            <a th:href="@{branches}" type="button" class="btn btn-secondary">Back</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Page Wrapper -->
+</div>
+<th:block th:replace="fragments/fragements :: scripts"></th:block>
+</body>
+</html>

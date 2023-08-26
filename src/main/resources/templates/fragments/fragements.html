@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
 	<title>Courier - Management</title>
 	<!-- Favicon -->
-	<link rel="shortcut icon" type="image/x-icon" th:href="@{/img/favicon.png}">
+	<!-- <link rel="shortcut icon" type="image/x-icon" th:href="@{/img/favicon.png}">-->
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
 	<!-- Fontawesome CSS -->
@@ -17,6 +17,8 @@
 	<!-- Datatables CSS -->
 	<link rel="stylesheet" th:href="@{/plugins/datatables/datatables.min.css}">
 	<!--[if lt IE 9]>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
 	<script th:src="@{/js/html5shiv.min.js}"></script>
 	<script th:src="@{/js/respond.min.js}"></script>
 	<![endif]-->
@@ -28,15 +30,27 @@
 	<div th:fragment="header" class="header">
 		<!-- Logo -->
 		<div class="header-left">
-			<a href="index.html" class="logo">
-				<!--<h2 style="font-weight: bold; margin-top: 10px;">ADMIN</h2>-->
-				<img th:src="@{/img/logo.png}" alt="Logo">
+			<a href="index.html" class="logo" style="text-align: center; height: 100vh; justify-content: center">
+				<h2 style="font-weight: bold; margin-top: 5px; padding-top: 5px">Admin</h2>
+				<!-- <img th:src="@{/img/logo.png}" alt="Logo">-->
 			</a>
 			<a href="index.html" class="logo logo-small">
 				<img th:src="@{/img/logo-small.png}" alt="Logo" width="30" height="30">
 			</a>
 		</div>
 		<!-- /Logo -->
+
+		<a href="javascript:void(0);" id="toggle_btn">
+			<i class="fe fe-text-align-left"></i>
+		</a>
+
+		<div class="top-nav-search">
+			<form>
+				<input type="text" class="form-control" placeholder="Search here">
+				<button class="btn" type="submit"><i class="fa fa-search"></i></button>
+			</form>
+		</div>
+
 		<!-- Mobile Menu Toggle -->
 		<a class="mobile_btn" id="mobile_btn">
 			<i class="fa fa-bars"></i>
@@ -149,12 +163,16 @@
 					<li>
 						<a th:href="@{/dashboard}"><i class="fe fe-home"></i> <span>Dashboard</span></a>
 					</li>
-					<li>
-						<a th:href="@{/customers}"><i class="fe fe-users"></i> <span>Customers</span></a>
-					</li>
 					<!--<li>
-					 <a href="specialities.html"><i class="fe fe-users"></i> <span>Specialities</span></a>
+						<a th:href="@{/customers}"><i class="fe fe-users"></i> <span>Customers</span></a>
 					</li>-->
+					<li class="submenu">
+					 <a href="#"><i class="fa fa-sitemap"></i> <span> Branches</span> <span class="menu-arrow"></span></a>
+					 <ul style="display: none;">
+						 <li><a th:href="@{/add-branch}"><i class="fa fa-circle" style="font-size: 15px"></i> <span>Add New Branch</span> </a></li>
+						 <li><a th:href="@{/branches}"><i class="fa fa-circle" style="font-size: 15px"></i> <span>Manage Branch</span></a></li>
+					 </ul>
+					</li>
 					<!--<li>
 					 <a href="doctor-list.html"><i class="fe fe-user-plus"></i> <span>Doctors</span></a>
 					</li>-->
