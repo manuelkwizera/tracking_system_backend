@@ -27,60 +27,31 @@ public class BranchController {
     public ResponseEntity<Branch> getBranchById(@PathVariable Long id){
         Branch branch = branchService.findBranchById(id);
         if(branch == null){
-            return ResponseEntity.notFound().build();
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(branch, HttpStatus.OK);
     }
     @PostMapping("/api/save-branch")
-    public ResponseEntity<?> createBranch(@Validated @RequestBody Branch branch){
+    public ResponseEntity<Branch> createBranch(@Validated @RequestBody Branch branch){
         Branch createdBranch = branchService.createBranch(branch);
         return new ResponseEntity<>(createdBranch, HttpStatus.CREATED);
     }
-
-    @GetMapping("/branches")
-    public String findAllBranches(Model model){
-        List<Branch> branches = branchService.findAllBranches();
-        model.addAttribute("page_title", "Branches");
-        model.addAttribute("branches", branches);
-        return "branch/index";
+    @PutMapping("/api/update-branch/{id}")
+    public ResponseEntity<Branch> updateBranch(@PathVariable Long id, @RequestBody Branch updateBranch){
+        Branch branch = branchService.findBranchById(id);
+        if(branch == null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        Branch savedBranch = branchService.updateBranch(updateBranch);
+        return new ResponseEntity<>(savedBranch, HttpStatus.OK);
     }
-    @GetMapping("/add-branch")
-    public String addBranch(Branch branch, Model model){
-        model.addAttribute("page_title", "Add Branch");
-        model.addAttribute("form_name", "Branch Form");
-        return "branch/add";
-    }
-    @PostMapping("/save-branch")
-    public String saveBranch(@Validated @ModelAttribute Branch branch, BindingResult result, Model model){
-        /*if(result.hasErrors()){
-            model.addAttribute("errors", result.getAllErrors());
-            model.addAttribute("branch", branch);
-            return "redirect:/add-branch";
-        }*/
-
-        branchService.createBranch(branch);
-        model.addAttribute("branches", branchService.findAllBranches());
-        return "redirect:/branches";
-    }
-    @GetMapping("/remove-branch/{id}")
-    public String deleteBranch(@PathVariable Long id, Model model){
+    @DeleteMapping("/api/delete-branch/{id}")
+    public ResponseEntity<Void> deleteBranch(@PathVariable long id){
+        Branch branch = branchService.findBranchById(id);
+        if(branch == null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
         branchService.deleteBranch(id);
-        model.addAttribute("branches", branchService.findAllBranches());
-        return "redirect:/branches";
-    }
-    @GetMapping("/edit-branch/{id}")
-    public String editBranch(@PathVariable Long id, Model model){
-        model.addAttribute("page_title", "Edit Branch");
-        model.addAttribute("branch", branchService.findBranchById(id));
-        return "branch/edit";
-    }
-    @PostMapping("/update-branch/{id}")
-    public String updateBranch(@PathVariable Long id, Branch branch, BindingResult result, Model model){
-        /*if(result.hasErrors()){
-            return "redirect:/edit-branch";
-        }*/
-        branchService.updateBranch(branch);
-        model.addAttribute("branches", branchService.findAllBranches());
-        return "redirect:/branches";
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

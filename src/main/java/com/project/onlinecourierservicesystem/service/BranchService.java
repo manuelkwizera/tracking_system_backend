@@ -22,8 +22,9 @@ public class BranchService {
         branchRepository.save(branch);
         return branch;
     }
-    public void updateBranch(Branch branch){
+    public Branch updateBranch(Branch branch){
         branchRepository.save(branch);
+        return branch;
     }
     public void deleteBranch(Long id){
         Branch branch = branchRepository.findById(id).orElseThrow(() -> new RuntimeException("branch not found"));
