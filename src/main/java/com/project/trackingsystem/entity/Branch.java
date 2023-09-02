@@ -1,4 +1,4 @@
-package com.project.onlinecourierservicesystem.entity;
+package com.project.trackingsystem.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;

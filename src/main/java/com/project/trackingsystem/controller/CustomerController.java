@@ -1,9 +1,7 @@
-package com.project.onlinecourierservicesystem.controller;
+package com.project.trackingsystem.controller;
 
-import com.project.onlinecourierservicesystem.entity.Customer;
-import com.project.onlinecourierservicesystem.service.CustomerService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.project.trackingsystem.entity.Customer;
+import com.project.trackingsystem.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,7 +9,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping   ;
 
 import java.util.List;
 

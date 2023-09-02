@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.project</groupId>
-    <artifactId>OnlineCourierServiceSystem</artifactId>
+    <artifactId>tracking_system_backend</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>OnlineCourierServiceSystem</name>
     <description>OnlineCourierServiceSystem</description>

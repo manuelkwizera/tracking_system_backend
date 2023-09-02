@@ -1,7 +1,7 @@
-package com.project.onlinecourierservicesystem.service;
+package com.project.trackingsystem.service;
 
-import com.project.onlinecourierservicesystem.entity.Customer;
-import com.project.onlinecourierservicesystem.repository.CustomerRepository;
+import com.project.trackingsystem.entity.Customer;
+import com.project.trackingsystem.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
