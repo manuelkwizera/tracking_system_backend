@@ -1,5 +1,7 @@
 package com.project.trackingsystem.controller;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.project.trackingsystem.entity.Vehicle;
 import com.project.trackingsystem.service.VehicleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,5 +56,18 @@ public class VehicleController {
         }
         VehicleService.deleteVehicle(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @PostMapping("/api/get-vehicles-by-location")
+    public String getVehiclesByLocation(@RequestBody String jsonData){
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            JsonNode jsonNode = objectMapper.readTree(jsonData);
+            String startingPoint = jsonNode.get("startingPoint").asText();
+            return startingPoint;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "Error";
+        }
     }
 }

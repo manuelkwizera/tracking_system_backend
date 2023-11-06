@@ -18,6 +18,12 @@ public class Vehicle {
     @Column(name = "number_plate", nullable = true)
     private String number_plate;
 
+    @Column(name = "starting_location", nullable = true)
+    private String starting_location;
+
+    @Column(name = "ending_location", nullable = true)
+    private String ending_location;
+
     @Column(name = "tracking_ip", nullable = true)
     private String tracking_ip;
 
