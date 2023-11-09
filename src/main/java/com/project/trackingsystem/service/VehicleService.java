@@ -31,4 +31,8 @@ public class VehicleService {
         Vehicle Vehicle = VehicleRepository.findById(id).orElseThrow(() -> new RuntimeException("Vehicle not found"));
         VehicleRepository.deleteById(Vehicle.getId());
     }
+
+    public List<Vehicle> getVehiclesByLocation(String startingLocation, String endingLocation){
+        return VehicleRepository.findVehiclesWithCustomPattern(startingLocation, endingLocation);
+    }
 }

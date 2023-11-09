@@ -59,15 +59,17 @@ public class VehicleController {
     }
 
     @PostMapping("/api/get-vehicles-by-location")
-    public String getVehiclesByLocation(@RequestBody String jsonData){
+    public ResponseEntity<List<Vehicle>> getVehiclesByLocation(@RequestBody String jsonData){
         try {
             ObjectMapper objectMapper = new ObjectMapper();
             JsonNode jsonNode = objectMapper.readTree(jsonData);
-            String startingPoint = jsonNode.get("startingPoint").asText();
-            return startingPoint;
+            String startingLocation = jsonNode.get("starting_location").asText();
+            String endingLocation = jsonNode.get("ending_location").asText();
+            List<Vehicle> Vehicles = VehicleService.getVehiclesByLocation(startingLocation, endingLocation);
+            return new ResponseEntity<>(Vehicles, HttpStatus.OK);
         } catch (Exception e) {
-            e.printStackTrace();
-            return "Error";
+            //e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 }
