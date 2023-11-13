@@ -12,7 +12,6 @@ public class VehicleService {
     private VehicleRepository VehicleRepository;
 
     public List<Vehicle> findAllVehicles(){
-
         return VehicleRepository.findAll();
     }
     public Vehicle findVehicleById(Long id){
